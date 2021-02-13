@@ -11,7 +11,14 @@ let sliders = [];
 // If this key doesn't work
 // Find the name in the url and go to their website
 // to create your own api key
-const KEY = '20265235-3c8bd75ac00717eb99b09e43f';
+const KEY = '15674931-a9d714b6e9d654524df198e00&q';
+
+// enter button for image search
+document.getElementById("search").addEventListener("keypress", function (event) {
+  if (event.key == 'Enter') {
+    document.getElementById("search-btn").click();
+  }
+});
 
 // show images 
 const showImages = (images) => {
@@ -39,7 +46,7 @@ let slideIndex = 0;
 const selectItem = (event, img) => {
   let element = event.target;
   element.classList.add('added');
- 
+
   let item = sliders.indexOf(img);
   if (item === -1) {
     sliders.push(img);
@@ -68,9 +75,7 @@ const createSlider = () => {
   // hide image aria
   imagesArea.style.display = 'none';
   const duration = document.getElementById('doration').value || 1000;
-  if(duration >= 0){
-    console.log("Please input positive digits");
-  }
+
   sliders.forEach(slide => {
     let item = document.createElement('div')
     item.className = "slider-item";
@@ -80,10 +85,17 @@ const createSlider = () => {
     sliderContainer.appendChild(item)
   })
   changeSlide(0)
-  timer = setInterval(function () {
-    slideIndex++;
-    changeSlide(slideIndex);
-  }, duration);
+  let time = document.getElementById('doration').value;
+  if (time > 0) {
+    timer = setInterval(function () {
+      slideIndex++;
+      changeSlide(slideIndex);
+    }, duration);
+  }
+  else {
+    alert("Please input valid timer");
+  }
+
 }
 
 // change slider index 
@@ -123,3 +135,6 @@ searchBtn.addEventListener('click', function () {
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
+
+
+
