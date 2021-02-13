@@ -128,16 +128,24 @@ const changeSlide = (index) => {
 }
 
 searchBtn.addEventListener('click', function () {
-  document.querySelector('.main').style.display = 'block';
-  clearInterval(timer);
-  const search = document.getElementById('search');
-  getImages(search.value)
-  sliders.length = 0;
+  if (document.getElementById('search').value == "") {
+    alert("Please type something!");
+  }
+  else {
+    document.querySelector('.main').style.display = 'block';
+    clearInterval(timer);
+    const search = document.getElementById('search');
+
+    getImages(search.value)
+    sliders.length = 0;
+  }
 })
 
 sliderBtn.addEventListener('click', function () {
   createSlider()
 })
+
+
 
 
 
