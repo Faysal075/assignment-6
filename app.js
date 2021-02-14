@@ -91,8 +91,10 @@ const createSlider = () => {
       changeSlide(slideIndex);
     }, duration);
   }
-  else {
+  else if(time < 0){
+    document.getElementById("sliders").style.display = "none";
     alert("Please enter valid timer");
+    
   }
 
 }
